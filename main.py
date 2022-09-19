@@ -64,23 +64,27 @@
 
 import random
 
-opções = ["pedra", "papel", "tesoura"]
-
-jogada = input("escolha uma opção ('pedra', 'papel', 'tesoura') ou sair: ")
-
-while jogada != "pedra" and jogada != "papel" and jogada != "tesoura" and jogada != "sair":
-        jogada = input("por favor escolha uma destas opções: pedra, papel ou tesoura ou sair: ")
-
-ganhador = "" 
+opcoes = ["pedra", "papel", "tesoura"]
+jogada = ""
 
 while jogada != "sair":
-    
-    computador = random.choice(opções)
-    
+    jogada = input("por favor escolha uma destas opções: pedra, papel ou tesoura ou sair: ")
+
+    if jogada == "sair":
+        break
+
+    if jogada not in opcoes:
+        print("Voce escolheu uma opcao invalida, por favor escolha uma destas opções: pedra, papel ou tesoura ou sair: ")
+        continue
+
+    computador = random.choice(opcoes)
+
+    ganhador = ""
+
     if computador == "pedra":
         if jogada == "tesoura":
             ganhador = "computador"
-        elif jogada == "papel": 
+        elif jogada == "papel":
             ganhador = "usuario"
         else:
             ganhador = "empate"
@@ -88,7 +92,7 @@ while jogada != "sair":
     elif computador == "tesoura":
         if jogada == "tesoura":
             ganhador = "empate"
-        elif jogada == "papel": 
+        elif jogada == "papel":
             ganhador = "computador"
         else:
             ganhador = "usuario"
@@ -96,12 +100,20 @@ while jogada != "sair":
     elif computador == "papel":
         if jogada == "tesoura":
             ganhador = "usuario"
-        elif jogada == "papel": 
+        elif jogada == "papel":
             ganhador = "empate"
         else:
-            ganhador = "computador"       
-    print(f"Você escolheu {jogada}, o computador escolheu {computador}. O resultado foi: {ganhador}")
-    jogada = input("escolha uma opção ('pedra', 'papel', 'tesoura') ou sair: ")
-    while jogada != "pedra" and jogada != "papel" and jogada != "tesoura" and jogada != "sair":
-        jogada = input("por favor escolha uma destas opções: pedra, papel ou tesoura ou sair: ")
+            ganhador = "computador"
 
+    print(f"Você escolheu {jogada}, o computador escolheu {computador}. O resultado foi: {ganhador}")
+
+    # Remova os comentarios e veja a magica
+    # if input("Pressione Enter para continuar ou 'sair' para sair... ") == 'sair':
+    #     break
+    
+    # import os
+
+    # if os.name == "nt": # Verifica se eh windows
+    #     os.system('cls')
+    # else:
+    #     os.system('clear')
